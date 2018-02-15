@@ -6,7 +6,7 @@ services:
  - docker
 
 env:
- - DEPENDENCY_PACKAGES="meson libgee-0.8-dev valac"
+ - DEPENDENCY_PACKAGES="meson libgee-0.8-dev valac git"
 
 install:
  - docker pull elementary/docker:loki
