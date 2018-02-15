@@ -1,0 +1,16 @@
+language: generic
+
+sudo: required
+
+services:
+ - docker
+
+env:
+ - DEPENDENCY_PACKAGES="meson libgee-0.8-dev gio-2.0-dev valac"
+
+install:
+ - docker pull elementary/docker:loki
+ - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/ && git clone https://github.com/elementary/vala-lint.git &&  cd vala-lint && meson build --prefix=/usr && cd build && ninja && ninja install && cd /tmp/build-dir && io.elementary.vala-lint -d src"
+
+script:
+ - echo BUILDS PASSED
