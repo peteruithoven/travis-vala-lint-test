@@ -10,7 +10,7 @@ env:
 
 install:
  - docker pull elementary/docker:loki
- - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/ && git clone https://github.com/elementary/vala-lint.git &&  cd vala-lint && meson build --prefix=/usr && cd build && ninja && ninja install && cd /tmp/build-dir && io.elementary.vala-lint -d src"
+ - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/ && git clone https://github.com/peteruithoven/vala-lint.git --branch 3-phases &&  cd vala-lint && meson build --prefix=/usr && cd build && ninja && ./io.elementary.vala-lint -d /tmp/build-dir/src"
 
 script:
  - echo BUILDS PASSED
